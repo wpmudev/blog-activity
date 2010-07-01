@@ -1,0 +1,28 @@
+Plugin Name: Blog Activity
+Author: Andrew Billits
+
+Files:
+----------------------------------------------------------------------
+blog-activity.php - goes in /wp-content/mu-plugins
+
+Instructions:
+----------------------------------------------------------------------
+1) Place the files in the specified directories
+2) Visit the plugin page under the site admin - the auto-installer will attempt to install the plugin
+3) If the auto-install does not add the db table(s) for you then run the sql code in "sql.txt" on your wpmu db
+
+Extra Goodies
+----------------------------------------------------------------------
+You can also place the stats anywhere on your blog
+
+Function:
+
+display_blog_activity_posts(PERIOD_IN_MINUTES)
+display_blog_activity_comments(PERIOD_IN_MINUTES)
+display_blog_activity_updated(PERIOD_IN_MINUTES)
+
+EXample 1:
+display_blog_activity_posts(5); will display the number of posts within the last five minutes
+
+Example 2:
+<p><?php display_blog_activity_updated(10); ?> blogs have been updated in the last ten minutes.</p>

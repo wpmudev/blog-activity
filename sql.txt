@@ -1,0 +1,25 @@
+CREATE TABLE `wp_blog_activity` (
+  `active_ID` bigint(20) unsigned NOT NULL auto_increment,
+  `blog_ID` bigint(35) NOT NULL default '0',
+  `last_active` bigint(35) NOT NULL default '0',
+  `post_count` bigint(35) NOT NULL default '0',
+  `page_count` bigint(35) NOT NULL default '0',
+  `comment_count` bigint(35) NOT NULL default '0',
+  PRIMARY KEY  (`active_ID`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `wp_post_activity` (
+  `active_ID` bigint(20) unsigned NOT NULL auto_increment,
+  `blog_ID` bigint(35) NOT NULL default '0',
+  `user_ID` bigint(35) NOT NULL default '0',
+  `stamp` bigint(35) NOT NULL default '0',
+  PRIMARY KEY  (`active_ID`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `wp_comment_activity` (
+  `active_ID` bigint(20) unsigned NOT NULL auto_increment,
+  `blog_ID` bigint(35) NOT NULL default '0',
+  `user_ID` bigint(35) NOT NULL default '0',
+  `stamp` bigint(35) NOT NULL default '0',
+  PRIMARY KEY  (`active_ID`)
+) ENGINE=MyISAM;
