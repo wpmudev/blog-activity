@@ -69,6 +69,9 @@ class Blog_Activity {
 		}
 	}
 
+	/**
+	 * Plugin db setup
+	 **/
 	function setup() {
 		global $plugin_page;
 
@@ -293,7 +296,7 @@ class Blog_Activity {
 			$week = $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->base_prefix}{$object}_activity WHERE $time_field > '$current_week'" );
 			$month = $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->base_prefix}{$object}_activity WHERE $time_field > '$current_month'" );
 
-			$activity .= sprintf( __( '<h3>Updated %ss in the last:</h3>', 'blog_activity' ), $object );
+			$activity .= '<h3>' . sprintf( __( 'Updated %ss in the last:', 'blog_activity' ), $object ) . '</h3>';
 			$activity .= '<p>';
 			$activity .= sprintf( __( 'Five Minutes: %d', 'blog_activity' ), $five_minutes ) . '<br />';
 			$activity .= sprintf( __( 'Hour: %d', 'blog_activity' ), $hour ) . '<br />';
