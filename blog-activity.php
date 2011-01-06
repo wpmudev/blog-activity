@@ -5,6 +5,7 @@ Plugin URI: http://premium.wpmudev.org/project/blog-activity
 Description: Collects data on how many blogs were updated in the past
 Author: Andrew Billits, Ulrich Sossou
 Version: 1.1.3
+Network: true
 Text Domain: blog_activity
 Author URI: http://premium.wpmudev.org/
 WDP ID: 4
