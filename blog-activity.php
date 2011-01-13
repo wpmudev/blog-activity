@@ -53,13 +53,17 @@ class Blog_Activity {
 	 **/
 	function __construct() {
 		add_action( 'admin_init', array( &$this, 'setup' ) );
-		add_action( 'admin_menu', array( &$this, 'pre_3_1_network_admin_page' ) );
-		add_action( 'network_admin_menu', array( &$this, 'network_admin_page' ) );
 		add_action( 'comment_post', array( &$this, 'blog_global_db_sync' ) );
 		add_action( 'save_post', array( &$this, 'blog_global_db_sync' ) );
 		add_action( 'comment_post', array( &$this, 'comment_global_db_sync' ) );
 		add_action( 'save_post', array( &$this, 'post_global_db_sync' ) );
 		add_action( 'blog_activity_cleanup_cron', array( &$this, 'cleanup' ) );
+
+		// Add the super admin page
+		if( version_compare( $wp_version , '3.0.9', '>' ) )
+			add_action( 'network_admin_menu', array( &$this, 'network_admin_page' ) );
+		else
+			add_action( 'admin_menu', array( &$this, 'pre_3_1_network_admin_page' ) );
 
 		// load text domain
 		if ( defined( 'WPMU_PLUGIN_DIR' ) && file_exists( WPMU_PLUGIN_DIR . '/blog-activity.php' ) ) {
