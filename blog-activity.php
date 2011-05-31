@@ -4,7 +4,7 @@ Plugin Name: Blog Activity
 Plugin URI: http://premium.wpmudev.org/project/blog-activity
 Description: Collects data on how many blogs were updated in the past
 Author: Andrew Billits, Ulrich Sossou
-Version: 1.1.3
+Version: 1.1.4
 Network: true
 Text Domain: blog_activity
 Author URI: http://premium.wpmudev.org/
@@ -39,7 +39,7 @@ class Blog_Activity {
 	/**
 	 * Current version of the plugin
 	 **/
-	var $current_version = '1.1.3';
+	var $current_version = '1.1.4';
 
 	/**
 	 * PHP 4 constructor
@@ -52,6 +52,8 @@ class Blog_Activity {
 	 * PHP 5 constructor
 	 **/
 	function __construct() {
+		global $wp_version;
+
 		add_action( 'admin_init', array( &$this, 'setup' ) );
 		add_action( 'comment_post', array( &$this, 'blog_global_db_sync' ) );
 		add_action( 'save_post', array( &$this, 'blog_global_db_sync' ) );
