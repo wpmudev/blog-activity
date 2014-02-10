@@ -3,8 +3,8 @@
 Plugin Name: Blog Activity
 Plugin URI: http://premium.wpmudev.org/project/blog-activity
 Description: Collects data on how many blogs were updated in the past
-Author: Andrew Billits, Ulrich Sossou
-Version: 1.1.4
+Author: WPMU DEV
+Version: 1.1.5
 Network: true
 Text Domain: blog_activity
 Author URI: http://premium.wpmudev.org/
@@ -39,7 +39,7 @@ class Blog_Activity {
 	/**
 	 * Current version of the plugin
 	 **/
-	var $current_version = '1.1.4';
+	var $current_version = '1.1.5';
 
 	/**
 	 * PHP 4 constructor
@@ -110,6 +110,12 @@ class Blog_Activity {
 	function install() {
 		global $wpdb;
 
+		if ( is_admin() ) {
+			global $wpmudev_notices;
+			$wpmudev_notices[] = array( 'id'=> 4,'name'=> 'Blog Activity', 'screens' => array( 'settings_page_blog_activity_main-network' ) );
+			include_once( 'externals/wpmudev-dash-notification.php' );
+		}
+
 		if( get_site_option( 'blog_activity_installed' ) == '' )
 			add_site_option( 'blog_activity_installed', 'no' );
 
@@ -122,7 +128,7 @@ class Blog_Activity {
 
 			// choose correct table charset and collation
 			$charset_collate = '';
-			if( $wpdb->supports_collation() ) {
+			if( $wpdb->has_cap( 'collation' ) ) {
 				if( !empty( $wpdb->charset ) ) {
 					$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
 				}
@@ -320,7 +326,7 @@ class Blog_Activity {
 
 }
 
-$blog_activity =& new Blog_Activity();
+$blog_activity = new Blog_Activity();
 
 /**
  * Display updated posts for a specific period of time

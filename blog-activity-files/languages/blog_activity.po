@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Blog Activity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-10 19:42+0100\n"
+"PO-Revision-Date: 2014-02-10 19:42+0100\n"
+"Last-Translator: Ignacio <igmoweb@gmail.com>\n"
+"Language-Team: igmoweb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../blog-activity.php:127
+msgid "We have problem finding your '/wp-admin/upgrade-functions.php' and '/wp-admin/includes/upgrade.php'"
+msgstr ""
+
+#: ../../blog-activity.php:218
+#: ../../blog-activity.php:225
+#: ../../blog-activity.php:321
+msgid "Blog Activity"
+msgstr ""
+
+#: ../../blog-activity.php:284
+msgid "<p>Nice Try...</p>"
+msgstr ""
+
+#: ../../blog-activity.php:311
+#, php-format
+msgid "Updated %ss in the last:"
+msgstr ""
+
+#: ../../blog-activity.php:313
+#, php-format
+msgid "Five Minutes: %d"
+msgstr ""
+
+#: ../../blog-activity.php:314
+#, php-format
+msgid "Hour: %d"
+msgstr ""
+
+#: ../../blog-activity.php:315
+#, php-format
+msgid "Day: %d"
+msgstr ""
+
+#: ../../blog-activity.php:316
+#, php-format
+msgid "Week: %d"
+msgstr ""
+
+#: ../../blog-activity.php:317
+#, php-format
+msgid "Month: %d"
+msgstr ""
+
+#: ../../blog-activity.php:323
+msgid "* Month = 30 days<br />Note: It will take a full thirty days for all of this data to be accurate. For example, if the plugin has been installed for only a day then only \"day\", \"hour\", and \"five minutes\" will contain accurate data."
+msgstr ""
+
+#: ../../blog-activity.php:367
+msgid "Please install the latest version of <a href=\"http://premium.wpmudev.org/project/update-notifications/\" title=\"Download Now &raquo;\">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href=\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/\">More information &raquo;</a>"
+msgstr ""
+
