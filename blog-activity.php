@@ -4,7 +4,7 @@ Plugin Name: Blog Activity
 Plugin URI: http://premium.wpmudev.org/project/blog-activity
 Description: Collects data on how many blogs were updated in the past
 Author: WPMU DEV
-Version: 1.1.5
+Version: 1.1.6
 Network: true
 Text Domain: blog_activity
 Author URI: http://premium.wpmudev.org/
@@ -39,21 +39,14 @@ class Blog_Activity {
 	/**
 	 * Current version of the plugin
 	 **/
-	var $current_version = '1.1.5';
+	var $current_version = '1.1.6';
 
-	/**
-	 * PHP 4 constructor
-	 **/
-	function Blog_Activity() {
-		__construct();
-	}
 
 	/**
 	 * PHP 5 constructor
 	 **/
 	function __construct() {
 		global $wp_version;
-
 		add_action( 'admin_init', array( &$this, 'setup' ) );
 		add_action( 'comment_post', array( &$this, 'blog_global_db_sync' ) );
 		add_action( 'save_post', array( &$this, 'blog_global_db_sync' ) );
@@ -73,6 +66,8 @@ class Blog_Activity {
 		} else {
 			load_plugin_textdomain( 'blog_activity', false, dirname( plugin_basename( __FILE__ ) ) . '/blog-activity-files/languages' );
 		}
+
+		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 	}
 
 	/**
@@ -102,6 +97,10 @@ class Blog_Activity {
 
 		if( get_site_option( 'blog_activity_version' ) !== $this->current_version )
 			update_site_option( 'blog_activity_version', $this->current_version );
+	}
+
+	function activate() {
+		$this->install();
 	}
 
 	/**
@@ -215,14 +214,14 @@ class Blog_Activity {
 	 * Add network admin page
 	 **/
 	function network_admin_page() {
-		add_submenu_page( 'settings.php', __( 'Blog Activity', 'blog_activity' ), __( 'Blog Activity', 'blog_activity' ), 'manage_network_options', 'blog_activity_main', array( &$this, 'page_main_output' ) );
+		add_submenu_page( 'settings.php', __( 'Blog Activity', 'blog_activity' ), __( 'Blog Activity', 'blog_activity' ), 'manage_network', 'blog_activity_main', array( &$this, 'page_main_output' ) );
 	}
 
 	/**
 	 * Add network admin page the old way
 	 **/
 	function pre_3_1_network_admin_page() {
-		add_submenu_page( 'ms-admin.php', __( 'Blog Activity', 'blog_activity' ), __( 'Blog Activity', 'blog_activity' ), 'manage_network_options', 'blog_activity_main', array( &$this, 'page_main_output' ) );
+		add_submenu_page( 'ms-admin.php', __( 'Blog Activity', 'blog_activity' ), __( 'Blog Activity', 'blog_activity' ), 'manage_network', 'blog_activity_main', array( &$this, 'page_main_output' ) );
 	}
 
 	/**
@@ -234,8 +233,8 @@ class Blog_Activity {
 		$month_ago = $current_stamp - 2678400;
 
 		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->base_prefix}blog_activity WHERE last_active < '%d'", $month_ago ) );
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->base_prefix}post_activity WHERE last_active < '%d'", $month_ago ) );
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->base_prefix}comment_activity WHERE last_active < '%d'", $month_ago ) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->base_prefix}post_activity WHERE stamp < '%d'", $month_ago ) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->base_prefix}comment_activity WHERE stamp < '%d'", $month_ago ) );
 	}
 
 	/**
