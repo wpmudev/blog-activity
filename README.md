@@ -3,6 +3,12 @@
 **INACTIVE NOTICE: This plugin is unsupported by WPMUDEV, we've published it here for those technical types who might want to fork and maintain it for their needs.**
 
 
+## Translations
+
+Translation files can be found at https://github.com/wpmudev/translations
+
+## About
+
 See blog updates, posts and comments for your entire network at a glance.
 
 * Blog update stats for Multisite 
